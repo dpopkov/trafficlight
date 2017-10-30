@@ -20,14 +20,17 @@ public class TrafficLight {
      * Запускает последовательность смены цветов.
      * Перед включением последовательность должна быть установлена
      * с помощью метода <code>setLightSequence()</code>.
+     * @param numberOfCycles
      */
-    public void turnOn() {
+    public void start(int numberOfCycles) {
         if (sequence == null) {
             throw new IllegalStateException("Не установлена последовательность включений");
         }
-        for (LightDuration lightDuration : sequence) {
-            System.out.println(lightDuration.getLightColor());
-            pauseMinutes(lightDuration.getMinutes());
+        for (int i = 0; i < numberOfCycles; i++) {
+            for (LightDuration lightDuration : sequence) {
+                System.out.println(lightDuration.getLightColor());
+                pauseMinutes(lightDuration.getMinutes());
+            }
         }
     }
 
